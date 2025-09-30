@@ -7,6 +7,8 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
 ![Framework](https://img.shields.io/badge/framework-Arduino-red.svg)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
 
+![Lilygo T-Display-S3 Display](https://github.com/sfrechette/weather-micro-statiom/blob/main/weather-micro-station.jpeg)
+
 ## Features
 
 - **Real-time Weather Data**: Fetches current weather from OpenWeatherMap API every 3 minutes
