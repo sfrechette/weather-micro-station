@@ -89,7 +89,7 @@ weather-micro-station/
 | **WeatherData** | Data structures | Weather info, display state, configuration |
 | **Main Loop** | Orchestration | Timing control, state management |
 
-## 🔄 Execution Flow
+## Execution Flow
 
 ### Startup Sequence (10-15 seconds)
 
@@ -110,7 +110,7 @@ graph TD
 ```mermaid
 graph TD
     A[Loop Start] --> B{25ms passed?}
-    B -->|No| I[yield()]
+    B -->|No| J[yield]
     B -->|Yes| C[Update Animation]
     C --> D{3 minutes passed?}
     D -->|No| G[Draw Display]
@@ -118,8 +118,8 @@ graph TD
     E --> F[Update Data]
     F --> G
     G --> H[Handle Buttons]
-    H --> I
-    I --> A
+    H --> J
+    J --> A
 ```
 
 ### API Fetch Sequence (Every 3 minutes)
@@ -239,17 +239,6 @@ Updated: 14:23:45
 - **API Key Protection** - Use environment variables in production
 - **WiFi Security** - Ensure WPA2/WPA3 network encryption
 - **HTTPS Only** - All API calls use secure connections
-
-[comment]: ## Future Enhancements
-
-[comment]: - [ ] Weather forecasts (5-day outlook)
-[comment]: - [ ] Multiple city support
-[comment]: - [ ] Historical weather data
-[comment]: - [ ] Weather alerts and notifications
-[comment]: - [ ] Custom themes and layouts
-[comment]: - [ ] Touch screen interface
-[comment]: - [ ] Data logging to SD card
-[comment]: - [ ] Web configuration interface
 
 ## Contributing
 
