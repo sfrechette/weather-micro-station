@@ -72,15 +72,21 @@ void setup() {
     apiClient.setTime();
     
     Serial.println("=== STARTUP: Making initial API call ===");
-    // Set "Fetching data..." message for startup
+    // Clear existing scrolling message and reset animation for startup
+    display.getAni() = ANIMATION_START_POSITION; // Reset animation position
     strcpy(display.getWeatherData().scrollingMessage, "... Fetching data ...");
     display.updateScrollingBuffer();
     Serial.println("Scrolling: ... Fetching data ...");
+    
+    // Wait 2 seconds so user can see "Fetching data..." clearly on device display
+    delay(2000);
     
     // Make initial API call
     if (apiClient.getData(display.getWeatherData(), display.getDisplayState())) {
         display.updateLegacyData();
         display.updateScrollingMessage();
+        // Reset animation and update display buffer with the actual data
+        display.getAni() = ANIMATION_START_POSITION; // Reset animation for new message
         display.updateScrollingBuffer();
         Serial.println("=== STARTUP: Initial API call successful ===");
     } else {
@@ -119,10 +125,14 @@ void loop() {
             
             Serial.printf("=== 3-MINUTE TIMER: Starting API fetch [%lu ms] ===\n", millis());
             
-            // Set "Fetching data..." message BEFORE API call
+            // Clear existing scrolling message and reset animation
+            display.getAni() = ANIMATION_START_POSITION; // Reset animation position
             strcpy(display.getWeatherData().scrollingMessage, "... Fetching data ...");
             display.updateScrollingBuffer();
             Serial.println("Scrolling: ... Fetching data ...");
+            
+            // Wait 2 seconds so user can see "Fetching data..." clearly on device display
+            delay(2000);
             
             // Fetch new weather data
             bool apiSuccess = apiClient.getData(display.getWeatherData(), display.getDisplayState());
@@ -134,7 +144,8 @@ void loop() {
                 // Update scrolling message with fetched data
                 display.updateScrollingMessage();
                 
-                // Update display buffer with the actual data
+                // Reset animation and update display buffer with the actual data
+                display.getAni() = ANIMATION_START_POSITION; // Reset animation for new message
                 display.updateScrollingBuffer();
             } else {
                 Serial.println("API call failed");

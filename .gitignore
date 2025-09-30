@@ -1,26 +1,63 @@
-# Secrets and credentials
-secrets.h
-
 # PlatformIO
 .pio/
 .vscode/
+.pioenvs/
+.piolibdeps/
+
+# Secrets and sensitive files
+include/secrets.h
+secrets.h
+config/secrets.*
+
+# Keep template files (these should be committed)
+!include/secrets_template.h
+!secrets_template.h
 
 # Build artifacts
-*.o
+build/
 *.bin
 *.elf
-
-# Logs
-*.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
+*.map
 
 # IDE files
-*.swp
-*.swo
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Logs and debug files
+*.log
+debug.txt
+serial_output.txt
+
+# Backup files
+*.backup
+*.bak
 *~
 
-src/main_complex.cpp.backup
-src/main.cpp.backup
+# Documentation build
+docs/_build/
+site/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Node.js (if used for tooling)
+node_modules/
+npm-debug.log
+
+# Test artifacts
+test_results/
+coverage/
