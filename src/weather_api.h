@@ -5,7 +5,7 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <time.h>
-#include <WiFiManager.h>
+// WiFiManager removed - using direct WiFi connection
 #include "config.h"
 #include "weather_data.h"
 #include "secrets.h"
@@ -33,7 +33,7 @@ class WeatherAPI {
 public:
     WeatherAPI(ESP32Time& rtcRef); // Constructor takes ESP32Time reference
 
-    bool connectWiFi(); // No longer needed as WiFiManager is in main
+    // connectWiFi() removed - WiFi connection now handled in main.cpp
     bool setTime();
     bool getData(WeatherData& weatherData, DisplayState& displayState);
 

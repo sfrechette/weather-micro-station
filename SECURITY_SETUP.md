@@ -2,21 +2,24 @@
 
 This guide explains how to securely configure your Weather Micro Station project with API keys, WiFi credentials, and other sensitive information.
 
-## 🔐 Overview
+## Overview
 
 The Weather Micro Station requires several sensitive credentials:
+
 - **OpenWeatherMap API Key** - For fetching weather data
 - **WiFi Credentials** - For internet connectivity
 - **Optional**: Custom API endpoints and configuration
 
-## 📋 Quick Setup
+## Quick Setup
 
 ### Step 1: Copy the Template
+
 ```bash
 cp include/secrets_template.h include/secrets.h
 ```
 
 ### Step 2: Edit Your Credentials
+
 Open `include/secrets.h` and replace the placeholder values:
 
 ```c
@@ -32,33 +35,38 @@ Open `include/secrets.h` and replace the placeholder values:
 ```
 
 ### Step 3: Verify Security
+
 - ✅ Ensure `secrets.h` is listed in `.gitignore`
 - ✅ Never commit `secrets.h` to version control
 - ✅ Keep API keys private and secure
 
-## 🌐 Getting Your OpenWeatherMap API Key
+## Getting Your OpenWeatherMap API Key
 
 ### Free API Key (Recommended)
+
 1. **Visit**: [OpenWeatherMap API](https://openweathermap.org/api)
 2. **Sign Up**: Create a free account
 3. **Generate Key**: Go to "My API Keys" section
 4. **Copy Key**: Use the generated key in your `secrets.h`
 
 ### API Key Features
+
 - ✅ **Free Tier**: 1,000 calls/day, 60 calls/hour
 - ✅ **Current Weather**: Real-time weather data
 - ✅ **Multiple Cities**: Support for any city worldwide
 - ✅ **Rate Limits**: Automatically respected by our 3-minute intervals
 
-## 📡 WiFi Configuration
+## WiFi Configuration
 
 ### Supported Networks
+
 - ✅ **WPA2/WPA3**: Secure wireless networks
 - ✅ **2.4GHz**: ESP32-S3 compatible frequency
 - ❌ **5GHz Only**: Not supported by ESP32-S3
 - ❌ **Enterprise**: WPA2-Enterprise not supported
 
 ### WiFi Troubleshooting
+
 ```c
 // For networks with special characters, use escape sequences:
 #define WIFI_SSID "Network \"With Quotes\""
@@ -69,9 +77,10 @@ Open `include/secrets.h` and replace the placeholder values:
 #define WIFI_PASSWORD "My Complex Password 123!"
 ```
 
-## 🏙️ City Configuration
+## City Configuration
 
 ### Supported City Formats
+
 ```c
 // City name only
 #define OPENWEATHERMAP_CITY "Toronto"
@@ -89,13 +98,15 @@ Open `include/secrets.h` and replace the placeholder values:
 ```
 
 ### City Name Tips
+
 - Use English names for best compatibility
 - Include country codes to avoid ambiguity
 - Check [OpenWeatherMap City List](https://openweathermap.org/find) for exact names
 
-## 🛡️ Security Best Practices
+## Security Best Practices
 
 ### File Protection
+
 ```bash
 # Verify secrets.h is in .gitignore
 grep -q "secrets.h" .gitignore && echo "✅ Protected" || echo "❌ Not protected"
@@ -105,20 +116,23 @@ chmod 600 include/secrets.h
 ```
 
 ### API Key Security
-- 🔒 **Never share** your API key publicly
-- 🔒 **Rotate keys** periodically (every 6 months)
-- 🔒 **Monitor usage** on OpenWeatherMap dashboard
-- 🔒 **Use environment variables** in production
+
+- **Never share** your API key publicly
+- **Rotate keys** periodically (every 6 months)
+- **Monitor usage** on OpenWeatherMap dashboard
+- **Use environment variables** in production
 
 ### WiFi Security
-- 🔒 Use **WPA3** or **WPA2** encryption
-- 🔒 Avoid **open networks** for device operation
-- 🔒 Consider **guest networks** for IoT devices
-- 🔒 **Change default** router passwords
 
-## 🔧 Advanced Configuration
+- Use **WPA3** or **WPA2** encryption
+- Avoid **open networks** for device operation
+- Consider **guest networks** for IoT devices
+- **Change default** router passwords
+
+## Advanced Configuration
 
 ### Custom API Endpoints
+
 ```c
 // For different OpenWeatherMap plans or custom proxies
 #define OPENWEATHERMAP_BASE_URL "https://api.openweathermap.org/data/2.5/weather"
@@ -128,6 +142,7 @@ chmod 600 include/secrets.h
 ```
 
 ### Development vs Production
+
 ```c
 // Development - shorter intervals for testing
 #define UPDATE_INTERVAL_MS 60000  // 1 minute
@@ -136,30 +151,36 @@ chmod 600 include/secrets.h
 #define UPDATE_INTERVAL_MS 180000  // 3 minutes
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common API Issues
 
 **401 Unauthorized**
+
 ```
 ERROR: HTTP request failed with code: 401
 ```
+
 - ❌ Invalid or missing API key
 - ✅ Verify API key in `secrets.h`
 - ✅ Check OpenWeatherMap account status
 
 **404 Not Found**
+
 ```
 ERROR: HTTP request failed with code: 404
 ```
+
 - ❌ Invalid city name
 - ✅ Check city spelling and format
 - ✅ Try adding country code
 
 **429 Too Many Requests**
+
 ```
 ERROR: HTTP request failed with code: 429
 ```
+
 - ❌ API rate limit exceeded
 - ✅ Increase `UPDATE_INTERVAL_MS`
 - ✅ Check API usage on OpenWeatherMap dashboard
@@ -167,9 +188,11 @@ ERROR: HTTP request failed with code: 429
 ### WiFi Connection Issues
 
 **Connection Timeout**
+
 ```
 Failed to connect to WiFi, restarting...
 ```
+
 - ❌ Wrong SSID or password
 - ❌ Network out of range
 - ❌ 5GHz network (use 2.4GHz)
@@ -177,16 +200,18 @@ Failed to connect to WiFi, restarting...
 - ✅ Check network availability
 
 **Frequent Disconnections**
+
 - ❌ Weak signal strength
 - ❌ Router issues
 - ✅ Move device closer to router
 - ✅ Check router stability
 
-## 🔄 Environment Variables (Advanced)
+## Environment Variables (Advanced)
 
 For production deployments, consider using environment variables:
 
 ### PlatformIO Build Flags
+
 ```ini
 ; platformio.ini
 [env:production]
@@ -197,6 +222,7 @@ build_flags =
 ```
 
 ### System Environment
+
 ```bash
 # Set environment variables
 export WEATHER_API_KEY="your_api_key_here"
@@ -207,7 +233,7 @@ export WIFI_PASS="your_wifi_password"
 pio run -e production
 ```
 
-## 📊 Security Checklist
+## Security Checklist
 
 Before deploying your Weather Micro Station:
 
@@ -222,9 +248,10 @@ Before deploying your Weather Micro Station:
 - [ ] ✅ Device placed in secure location
 - [ ] ✅ Regular security updates planned
 
-## 🆘 Emergency Procedures
+## Emergency Procedures
 
 ### Compromised API Key
+
 1. **Immediate**: Delete key from OpenWeatherMap dashboard
 2. **Generate**: Create new API key
 3. **Update**: Replace key in `secrets.h`
@@ -232,18 +259,16 @@ Before deploying your Weather Micro Station:
 5. **Monitor**: Check for unauthorized usage
 
 ### Lost Access
+
 1. **Reset**: Factory reset device if needed
 2. **Reconfigure**: Set up new `secrets.h`
 3. **Test**: Verify connectivity before deployment
 
-## 📞 Support Resources
+## Support Resources
 
 - **OpenWeatherMap**: [API Documentation](https://openweathermap.org/api)
 - **ESP32**: [WiFi Documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_wifi.html)
 - **Project Issues**: [GitHub Issues](https://github.com/your-repo/issues)
 
 ---
-
-**🔒 Remember: Security is everyone's responsibility. Keep your credentials safe!**
-
 *Last Updated: 2024 - Weather Micro Station v2.0*

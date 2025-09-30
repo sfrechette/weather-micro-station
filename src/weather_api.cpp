@@ -33,18 +33,7 @@ WeatherAPI::WeatherAPI(ESP32Time& rtcRef) : rtc(rtcRef) {
     // Constructor initialization
 }
 
-bool WeatherAPI::connectWiFi() {
-    WiFiManager wifiManager;
-    wifiManager.setConfigPortalTimeout(WIFI_TIMEOUT_MS);
-    
-    if (!wifiManager.autoConnect(WIFI_SSID, WIFI_PASSWORD)) {
-        Serial.println("Failed to connect to WiFi");
-        return false;
-    }
-    
-    Serial.println("WiFi connected successfully");
-    return true;
-}
+// connectWiFi() removed - WiFi connection now handled in main.cpp
 
 bool WeatherAPI::setTime() {
     Serial.println("Synchronizing time with NTP server...");
