@@ -1,8 +1,8 @@
 # Weather Station Execution Flow Analysis
 
-## 🎯 Complete Function Call Hierarchy
+## Complete Function Call Hierarchy
 
-### 🚀 Startup Phase (Runs Once - ~10-15 seconds)
+### Startup Phase (Runs Once - ~10-15 seconds)
 
 ```
 main.cpp::setup()
@@ -45,7 +45,7 @@ main.cpp::setup()
 └── timePased = millis()                         // Start 3-minute timer
 ```
 
-### 🔄 Main Loop (Runs Continuously at 40Hz)
+### Main Loop (Runs Continuously at 40Hz)
 
 ```
 main.cpp::loop()
@@ -103,7 +103,7 @@ main.cpp::loop()
 └── yield()                                     // ESP32 task scheduling
 ```
 
-## ⏱️ Timing Intervals & Performance
+## Timing Intervals & Performance
 
 | Operation | Interval | Purpose | Performance Impact |
 |-----------|----------|---------|-------------------|
@@ -114,9 +114,10 @@ main.cpp::loop()
 | **"Fetching" Display** | 2,000ms (2 sec) | User feedback | UX enhancement |
 | **Button Polling** | Every loop cycle | User input | Minimal overhead |
 
-## 🗄️ Key Data Structures
+## Key Data Structures
 
 ### WeatherData Struct
+
 ```cpp
 struct WeatherData {
     float temperature;           // Current temperature (°C)
@@ -134,6 +135,7 @@ struct WeatherData {
 ```
 
 ### DisplayState Struct  
+
 ```cpp
 struct DisplayState {
     bool isConnected;           // WiFi connection status
@@ -145,6 +147,7 @@ struct DisplayState {
 ```
 
 ### WeatherConfig Struct
+
 ```cpp
 struct WeatherConfig {
     const char* apiKey;         // OpenWeatherMap API key
@@ -155,65 +158,78 @@ struct WeatherConfig {
 };
 ```
 
-## 🎯 Critical Execution Paths
+## Critical Execution Paths
 
 ### 1. Startup Path (Success Flow)
+
 ```
 Power On → Serial Init → Display Init → WiFi Connect → Time Sync → 
 Initial API Call → Data Display → Enter Main Loop
 ```
+
 **Duration**: ~10-15 seconds  
 **Critical Points**: WiFi connection, API availability, time sync
 
 ### 2. 3-Minute Timer Path (Data Refresh)
+
 ```
 Timer Trigger → Animation Reset → Show "Fetching" → API Call → 
 Parse Data → Update Display → Reset Animation → Continue Loop
 ```
+
 **Duration**: ~3-5 seconds  
 **Critical Points**: Network connectivity, API response time, JSON parsing
 
 ### 3. Display Loop Path (Continuous)
+
 ```
 Update Animation → Check Timers → Render Display → Handle Input → 
 Memory Check → Yield → Repeat
 ```
+
 **Duration**: 25ms per cycle  
 **Critical Points**: Rendering performance, memory usage, smooth animation
 
 ### 4. API Flow Path (Network Operations)
+
 ```
 HTTP Request → Server Response → JSON Parsing → Data Extraction → 
 Timestamp Creation → Struct Update → Success/Failure Return
 ```
+
 **Duration**: 1-3 seconds  
 **Critical Points**: Network latency, API rate limits, JSON validity
 
-## 🔧 Performance Optimizations
+## Performance Optimizations
 
 ### Font Management
+
 - **Load on demand**: Fonts loaded only when needed
 - **Unload after use**: Memory freed immediately  
 - **Caching strategy**: Frequently used fonts kept in memory
 
 ### Message Buffering
+
 - **Width caching**: Text width calculated once per message
 - **Static buffers**: Fixed-size arrays reduce memory allocation
 - **Double buffering**: Smooth transitions between messages
 
 ### Network Efficiency
+
 - **Connection reuse**: HTTP client optimized for multiple calls
 - **Timeout handling**: Robust error recovery mechanisms
 - **Rate limit compliance**: 3-minute intervals respect API limits
 
 ### Memory Management
+
 - **Stack optimization**: Local variables minimized
 - **Heap monitoring**: Regular memory usage tracking
 - **Buffer reuse**: Static arrays prevent fragmentation
 
-## 🐛 Debug & Monitoring Points
+## Debug & Monitoring Points
 
 ### Serial Output Markers
+
 ```
 [TRACE] Function entry/exit tracking
 [API]   HTTP request/response logging  
@@ -223,6 +239,7 @@ Timestamp Creation → Struct Update → Success/Failure Return
 ```
 
 ### Key Monitoring Values
+
 - **Free heap memory**: ESP.getFreeHeap()
 - **WiFi signal strength**: WiFi.RSSI()
 - **API response time**: HTTP request duration
