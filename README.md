@@ -7,7 +7,7 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
 ![Framework](https://img.shields.io/badge/framework-Arduino-red.svg)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
 
-## 📋 Features
+## Features
 
 - **Real-time Weather Data**: Fetches current weather from OpenWeatherMap API every 3 minutes
 - **Smooth Animations**: 40 FPS scrolling ticker with professional transitions
@@ -18,9 +18,10 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
 - **Time Synchronization**: Automatic NTP sync every 30 minutes
 - **Error Recovery**: Robust WiFi reconnection and API error handling
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
+
 - LILYGO T-Display S3 board
 - PlatformIO IDE or Arduino IDE
 - OpenWeatherMap API key (free at [openweathermap.org](https://openweathermap.org/api))
@@ -28,17 +29,20 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd weather-micro-station
    ```
 
 2. **Create secrets file:**
+
    ```bash
    cp include/secrets_template.h include/secrets.h
    ```
 
 3. **Configure your credentials in `include/secrets.h`:**
+
    ```c
    #define OPENWEATHERMAP_API_KEY "your_api_key_here"
    #define WIFI_SSID "your_wifi_network"
@@ -47,13 +51,15 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
    ```
 
 4. **Build and upload:**
+
    ```bash
    pio run --target upload
    ```
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ### Project Structure
+
 ```
 weather-micro-station/
 ├── src/
@@ -86,6 +92,7 @@ weather-micro-station/
 ## 🔄 Execution Flow
 
 ### Startup Sequence (10-15 seconds)
+
 ```mermaid
 graph TD
     A[Power On/Upload] --> B[Serial Init]
@@ -99,6 +106,7 @@ graph TD
 ```
 
 ### Main Loop (Continuous at 40Hz)
+
 ```mermaid
 graph TD
     A[Loop Start] --> B{25ms passed?}
@@ -115,15 +123,17 @@ graph TD
 ```
 
 ### API Fetch Sequence (Every 3 minutes)
+
 1. **Clear Animation** → Reset scrolling position
 2. **Show "Fetching data..."** → 2-second display
 3. **HTTP API Call** → OpenWeatherMap request
 4. **Parse JSON** → Extract weather data
 5. **Update Display** → Fresh animation with new data
 
-## ⚙️ Configuration
+## Configuration
 
 ### Timing Settings (`config.h`)
+
 ```c
 #define UPDATE_INTERVAL_MS 180000      // 3 minutes - API calls
 #define SYNC_INTERVAL_UPDATES 10       // 30 minutes - time sync
@@ -131,20 +141,25 @@ graph TD
 ```
 
 ### Weather Data Format
+
 The scrolling ticker displays:
+
 ```
 "... [description], visibility is [X]km/h, wind of [Y]km/h, last updated at [HH:MM:SS] ..."
 ```
 
 ### Display Layout
+
 - **Left Panel**: Time, date, temperature, "Micro Station" branding
 - **Right Panel**: Weather icon, humidity, pressure, wind, clouds, visibility
 - **Bottom Ticker**: Scrolling weather summary with real-time updates
 
-## 🔧 Development Tools
+## Development Tools
 
 ### Function Call Tracing
+
 Add to your code for runtime analysis:
+
 ```cpp
 #include "tools/trace_functions.h"
 
@@ -157,18 +172,22 @@ void myFunction() {
 ```
 
 ### Call Graph Generation
+
 Generate visual call graphs:
+
 ```bash
 python3 generate_callgraph.py > callgraph.md
 ```
 
 ### Static Analysis
+
 Run comprehensive code analysis:
+
 ```bash
 pio check --verbose
 ```
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Value | Notes |
 |--------|--------|-------|
@@ -178,27 +197,32 @@ pio check --verbose
 | **WiFi Reconnect** | 30 second timeout | Automatic recovery |
 | **Time Sync** | Every 30 minutes | NTP synchronization |
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
 **Display not updating:**
+
 - Check WiFi connection (LED indicators)
 - Verify API key in `secrets.h`
 - Monitor serial output for errors
 
 **Scrolling message stuck:**
+
 - API call might be failing
 - Check internet connectivity
 - Verify OpenWeatherMap service status
 
 **Compilation errors:**
+
 - Ensure all font files are in `include/` directory
 - Check `secrets.h` exists and is properly formatted
 - Verify PlatformIO libraries are installed
 
 ### Debug Output
+
 Enable detailed logging by monitoring serial output at 115200 baud:
+
 ```
 === STARTUP: Making initial API call ===
 Scrolling: ... Fetching data ...
@@ -209,14 +233,14 @@ Wind: 11.1 km/h | Clouds: 75% | Visibility: 10.0 km | few clouds
 Updated: 14:23:45
 ```
 
-## 🔐 Security Notes
+## Security Notes
 
 - **Never commit `secrets.h`** - Add to `.gitignore` (see `SECURITY_SETUP.md`)
 - **API Key Protection** - Use environment variables in production
 - **WiFi Security** - Ensure WPA2/WPA3 network encryption
 - **HTTPS Only** - All API calls use secure connections
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - [ ] Weather forecasts (5-day outlook)
 - [ ] Multiple city support
@@ -227,7 +251,7 @@ Updated: 14:23:45
 - [ ] Data logging to SD card
 - [ ] Web configuration interface
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -236,16 +260,17 @@ Updated: 14:23:45
 5. Open a Pull Request
 
 ### Code Style
+
 - Use descriptive variable names
 - Add comments for complex logic
 - Follow existing formatting patterns
 - Test on actual hardware before submitting
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **OpenWeatherMap** - Weather data API
 - **LILYGO** - T-Display S3 hardware
@@ -253,14 +278,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **ArduinoJson** - JSON parsing
 - **ESP32Time** - Real-time clock management
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Email**: your-email@example.com
-
+  
 ---
-
-**Built with ❤️ by Stéphane Fréchette**
-
-*Version 2.0 - Modular Architecture Edition*
