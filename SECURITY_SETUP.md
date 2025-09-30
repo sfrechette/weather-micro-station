@@ -271,4 +271,3 @@ Before deploying your Weather Micro Station:
 - **Project Issues**: [GitHub Issues](https://github.com/your-repo/issues)
 
 ---
-*Last Updated: 2024 - Weather Micro Station v2.0*

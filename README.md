@@ -88,6 +88,8 @@ weather-micro-station/
 
 ## Execution Flow
 
+![View detail Weather Station Execution Flow Analysis -> ](https://github.com/sfrechette/weather-micro-station/blob/master/docs/execution_flow.md)
+
 ### Startup Sequence (10-15 seconds)
 
 ```mermaid
