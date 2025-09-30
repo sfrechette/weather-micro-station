@@ -240,16 +240,16 @@ Updated: 14:23:45
 - **WiFi Security** - Ensure WPA2/WPA3 network encryption
 - **HTTPS Only** - All API calls use secure connections
 
-## Future Enhancements
+[comment]: ## Future Enhancements
 
-- [ ] Weather forecasts (5-day outlook)
-- [ ] Multiple city support
-- [ ] Historical weather data
-- [ ] Weather alerts and notifications
-- [ ] Custom themes and layouts
-- [ ] Touch screen interface
-- [ ] Data logging to SD card
-- [ ] Web configuration interface
+[comment]: - [ ] Weather forecasts (5-day outlook)
+[comment]: - [ ] Multiple city support
+[comment]: - [ ] Historical weather data
+[comment]: - [ ] Weather alerts and notifications
+[comment]: - [ ] Custom themes and layouts
+[comment]: - [ ] Touch screen interface
+[comment]: - [ ] Data logging to SD card
+[comment]: - [ ] Web configuration interface
 
 ## Contributing
 
@@ -280,7 +280,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)
+- **Issues**: [GitHub Issues](https://github.com/sfrechette/weather-micro-station/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/sfrechette/weather-micro-station/discussions)
   
 ---
