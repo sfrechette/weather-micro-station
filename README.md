@@ -239,21 +239,6 @@ Updated: 14:23:45
 - **WiFi Security** - Ensure WPA2/WPA3 network encryption
 - **HTTPS Only** - All API calls use secure connections
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Code Style
-
-- Use descriptive variable names
-- Add comments for complex logic
-- Follow existing formatting patterns
-- Test on actual hardware before submitting
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -269,6 +254,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/sfrechette/weather-micro-station/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sfrechette/weather-micro-station/discussions)
   
 ---
