@@ -162,7 +162,8 @@ The scrolling ticker displays:
 
 ### Weather Icons
 
-The app includes **18 weather condition icons** that automatically display based on the current weather:
+The app includes **18 weather condition icons** (9 in reality, using same icon for day(d) and night(n)) that automatically display based on the current weather:
+
 - **Clear sky** (01d/01n)
 - **Few clouds** (02d/02n)
 - **Scattered clouds** (03d/03n)
