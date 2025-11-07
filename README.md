@@ -8,6 +8,8 @@ A modular, high-performance weather display system for the LILYGO T-Display S3, 
 
 ![Lilygo T-Display-S3 Display](https://github.com/sfrechette/weather-micro-station/blob/master/weather-micro-station.JPEG)
 
+Inspired from Volos Projects: [Let's make Cheap Internet Weather Station using LilyGo T-Display S3 and OpenWeatherMap.org](https://youtu.be/VntDY9Mg7T0?si=NuUndaefoagmdGl1)
+
 ## Features
 
 - **Real-time Weather Data**: Fetches current weather from OpenWeatherMap API every 3 minutes
