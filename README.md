@@ -13,6 +13,7 @@ Inspired from Volos Projects: [Let's make Cheap Internet Weather Station using L
 ## Features
 
 - **Real-time Weather Data**: Fetches current weather from OpenWeatherMap API every 3 minutes
+- **Weather Icons**: Visual weather condition icons (18 different conditions) displayed on screen
 - **Smooth Animations**: 40 FPS scrolling ticker with professional transitions
 - **Modular Architecture**: Clean, maintainable code structure with separate classes
 - **Secure Credentials**: API keys and WiFi credentials stored in `secrets.h`
@@ -156,8 +157,23 @@ The scrolling ticker displays:
 ### Display Layout
 
 - **Left Panel**: Time, date, temperature, "Micro Station" branding
-- **Right Panel**: Weather icon, humidity, pressure, wind, clouds, visibility
+- **Right Panel**: Weather icon (18 different conditions), humidity, pressure, wind, clouds, visibility
 - **Bottom Ticker**: Scrolling weather summary with real-time updates
+
+### Weather Icons
+
+The app includes **18 weather condition icons** that automatically display based on the current weather:
+- **Clear sky** (01d/01n)
+- **Few clouds** (02d/02n)
+- **Scattered clouds** (03d/03n)
+- **Broken clouds** (04d/04n)
+- **Shower rain** (09d/09n)
+- **Rain** (10d/10n)
+- **Thunderstorm** (11d/11n)
+- **Snow** (13d/13n)
+- **Mist** (50d/50n)
+
+Icons are 24x24 pixels, stored in RGB565 format, and automatically selected based on the OpenWeatherMap API response. Day and night variants are supported.
 
 ## Development Tools
 
