@@ -36,7 +36,7 @@ unsigned long timePased = 0;
  */
 void setup() {
     Serial.begin(115200);
-    Serial.println("Weather Display Starting...");
+    Serial.println("Weather Micro Station Starting...");
     
     // Initialize display
     display.begin();

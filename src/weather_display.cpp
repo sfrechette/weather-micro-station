@@ -55,7 +55,7 @@ void WeatherDisplay::begin() {
     tft.setRotation(1);
     tft.setSwapBytes(true);
     tft.fillScreen(TFT_BLACK);
-    tft.drawString("Connecting to WIFI!!", 30, 50, 4);
+    tft.drawString("Weather Micro Station", 30, 50, 4);
     
     // Create sprites for double buffering
     sprite.createSprite(SPRITE_WIDTH, SPRITE_HEIGHT);
